@@ -1,10 +1,23 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
 )
+
+type DataResult struct {
+	Name string
+	Url string
+}
+
+type Data struct {
+	Count int
+	Next string
+	Previous *string
+	Results []DataResult
+}
 
 func commandMap(config *config) error {
 	res, err := http.Get("https://pokeapi.co/api/v2/location-area")
@@ -20,6 +33,15 @@ func commandMap(config *config) error {
 		return err
 	}
 
-	fmt.Printf("%s", body)
+	data := Data{}
+	err = json.Unmarshal(body, &data) 
+	if err != nil {
+		return fmt.Errorf("Unable to marshal data from %v", body)
+	}
+		
+	for _, v := range(data.Results) {
+		fmt.Println(v.Name)
+	}
+
 	return nil
 }

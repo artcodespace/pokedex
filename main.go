@@ -7,6 +7,10 @@ import (
 )
 
 func main() {
+	config := config {
+		Next: "",
+		Previous: "",
+	}
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for {
@@ -25,10 +29,6 @@ func main() {
 		cmd := cleanedLine[0]
 
 		if c, ok := getCommands()[cmd]; ok {
-			config := config {
-				Next: "",
-				Previous: "",
-			}
 			err := c.callback(&config)
 			if err != nil {
 				fmt.Printf("%v", err)
