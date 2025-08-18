@@ -25,7 +25,11 @@ func main() {
 		cmd := cleanedLine[0]
 
 		if c, ok := getCommands()[cmd]; ok {
-			err := c.callback()
+			config := config {
+				Next: "",
+				Previous: "",
+			}
+			err := c.callback(&config)
 			if err != nil {
 				fmt.Printf("%v", err)
 			}
