@@ -8,8 +8,8 @@ import (
 
 func main() {
 	config := config {
-		Next: "",
-		Previous: "",
+		Next: nil,
+		Previous: nil,
 	}
 	scanner := bufio.NewScanner(os.Stdin)
 
