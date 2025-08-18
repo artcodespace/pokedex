@@ -9,8 +9,6 @@ func commandHelp() error {
 	for _, cmd := range getCommands() {
 		fmt.Printf("%s: %s\n", cmd.name, cmd.description)
 	}
-	fmt.Println("help: Displays a help message")
-	fmt.Println("exit: Exit the Pokedex")
 	fmt.Println()
 	return nil
 }
